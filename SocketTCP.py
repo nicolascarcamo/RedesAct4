@@ -166,11 +166,13 @@ class SocketTCP:
         else:
             raise Exception("Connection failed")
         
-    def send(self, message):
-            print("TODO")
-
-    def recv(self, buff_size):
-        print("TODO")
+    def send(self, message, mode="stop_and_wait"):
+        if mode == "stop_and_wait":
+            self.send_using_stop_and_wait(message)
+    
+    def recv(self, buff_size, mode="stop_and_wait"):
+        if mode == "stop_and_wait":
+            self.recv_using_stop_and_wait(buff_size)
             
     #We'll create a send(message) function which will be used to send a message to the other side
     #The function will implement timeout and retransmission
