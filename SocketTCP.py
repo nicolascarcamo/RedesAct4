@@ -165,6 +165,12 @@ class SocketTCP:
                 raise Exception("Connection failed at last step")
         else:
             raise Exception("Connection failed")
+        
+    def send(self, message):
+            print("TODO")
+
+    def recv(self, buff_size):
+        print("TODO")
             
     #We'll create a send(message) function which will be used to send a message to the other side
     #The function will implement timeout and retransmission
@@ -175,7 +181,7 @@ class SocketTCP:
     #It will wait for an ACK segment from the receiver
     #If the ACK segment is not received within a timeout, it will retransmit the segment
     #If the ACK segment is received, it will send the next segment
-    def send(self, message):
+    def send_using_stop_and_wait(self, message, mode="stop_and_wait"):
         print("Sending message: ", message)
         #Send the size of the message to the receiver
         #The size of the message will be sent using len function
@@ -235,7 +241,7 @@ class SocketTCP:
 
 
     #We'll create a recv(size) function which will be used to receive a message from the other side
-    def recv(self, buff_size):
+    def recv_using_stop_and_wait(self, buff_size, mode="stop_and_wait"):
         # si tenia un timeout activo en el objeto, lo desactivo
         self.sock.settimeout(None)
         #If self.message_length is 0, then we'll receive the size of the message
@@ -308,14 +314,6 @@ class SocketTCP:
 
 
         # despues de recibir el message_length se continua con la recepcion
-
-
-#Aca en esta parte es para ver si podemos usar todo el mensaje sobrante o no
-#Luego de esto la idea es ver el caso donde ya no podemos seguir recibiendo (pues ya recibimos todo el mensaje)
-#Si sucede eso, tenemos que seguir quitando del mensaje auxiliar hasta que podamos enviar todo el mensaje
-#
-#Go Back N -> send -> selective repeat, recv -> Stop and Wait
-#
 
 
     #Now we'll implement end of connection
