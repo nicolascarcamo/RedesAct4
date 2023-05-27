@@ -16,13 +16,13 @@ client_socketTCP = SocketTCP.SocketTCP()
 client_socketTCP.connect(SERVER_ADDRESS)
 # test 1
 message = "Mensje de len=16"
-client_socketTCP.send(message)
+client_socketTCP.send(message, mode="selective_repeat")
 # test 2
 message = "Mensaje de largo 19"
-client_socketTCP.send(message)
+client_socketTCP.send(message, mode="selective_repeat")
 # test 3
 message = "Mensaje de largo 19"
-client_socketTCP.send(message)
+client_socketTCP.send(message, mode="selective_repeat")
 
 # test close function
 client_socketTCP.close()
